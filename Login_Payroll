@@ -1,0 +1,90 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package swing_demo;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.*;
+
+public class Swing_demo implements ActionListener{
+
+   JLabel l1,l2,l3;
+   JPasswordField p1;
+   JTextField t1,t2;
+   JButton b1,b2;
+   JFrame j=new JFrame();
+    public Swing_demo() {
+         
+        l1=new JLabel("Enter Student ID :");
+        l2=new JLabel("Enter Password :");
+        l3=new JLabel("Welcome to Login Demo.");
+        
+        p1=new JPasswordField();
+        t1=new JTextField();
+        b1=new JButton("Login");
+        b2=new JButton("Reset");
+        
+        l1.setBounds(50, 50, 100,30);
+        l2.setBounds(50,100,100,30);
+        l3.setBounds(150, 10, 400, 30);
+        t1.setBounds(200, 50, 200,30);
+        p1.setBounds(200, 100, 200,30);
+        
+        b1.setBounds(140, 150, 100, 30);
+        b2.setBounds(250, 150, 100,30);
+        
+        j.add(l1);
+        j.add(l2);
+        j.add(l3);
+        j.add(t1);
+        j.add(p1);
+        j.add(b1);
+        j.add(b2);
+        
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        
+        j.setSize(500,300);
+        j.setLayout(null);
+        j.setVisible(true);
+        j.setTitle("Login System");
+    }
+
+        
+    public static void main(String[] args) {
+        Swing_demo obj=new Swing_demo();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int sid,password;
+        String s1=t1.getText();
+        String s2=p1.getText();
+
+        if(e.getSource() == b1)
+        {
+            if(s1.equals("S1800192") && s2.equals("password"))
+            {
+                l3.setText("Login Successful.");
+                //after login call the constructor of next java class
+                j.dispose();
+                new welcome();
+           }
+            else
+            {
+                l3.setText("Crediantials invalid !!");
+            }
+        }
+        else if(e.getSource() == b2)
+        {
+            t1.setText("");
+            p1.setText("");
+            l3.setText("Welcome to Login Demo.");
+        }
+    }
+    
+}
